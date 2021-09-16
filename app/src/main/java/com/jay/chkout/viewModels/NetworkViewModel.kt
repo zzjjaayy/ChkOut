@@ -21,7 +21,7 @@ class NetworkViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = FakeStoreApi.retroFitService.getProducts()
-                _status.value = response
+                _status.value = "There are ${response.size} products"
             } catch (e : Exception) {
                 _status.value = e.toString()
             }

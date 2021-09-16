@@ -1,22 +1,27 @@
 package com.jay.chkout.network
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL = "https://fakestoreapi.com/"
-// First the builder is called which is followed by a converter factory which tells Retrofit
-// what to do with the data. ScalarsConverterFactory supports strings and thus passed here.
-// Then the url which will be the source of the JSON response.
+
+// Moshi is used to
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
 
 interface FakeStoreApiService {
     // This annotation is to tell retrofit that this is the get request and the endpoint of the URL is passed here
     @GET("products")
-    suspend fun getProducts() : String
+    suspend fun getProducts() : List<Product>
 }
 
 
