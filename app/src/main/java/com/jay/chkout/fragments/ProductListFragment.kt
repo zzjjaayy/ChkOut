@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.jay.chkout.databinding.FragmentProductListBinding
 import com.jay.chkout.viewModels.NetworkViewModel
 
@@ -29,6 +30,9 @@ class ProductListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = ProductAdapter{
+            val action = ProductListFragmentDirections
+                .actionProductListFragmentToProductDetailsFragment(it.id)
+            findNavController().navigate(action)
             Toast.makeText(context, it.productTitle, Toast.LENGTH_SHORT).show()
         }
         binding.apply {
