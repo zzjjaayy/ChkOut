@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.jay.chkout.databinding.FragmentProductListBinding
@@ -27,7 +28,9 @@ class ProductListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ProductAdapter()
+        val adapter = ProductAdapter{
+            Toast.makeText(context, it.productTitle, Toast.LENGTH_SHORT).show()
+        }
         binding.apply {
             viewModel = networkViewModel
             lifecycleOwner = this@ProductListFragment

@@ -5,16 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jay.chkout.databinding.ProductItemBinding
 import com.jay.chkout.network.Product
 
-class ProductAdapter(): ListAdapter<Product,
+class ProductAdapter(private val onProductClicked : (Product) -> Unit): ListAdapter<Product,
         ProductAdapter.ProductViewHolder>(DiffCallback) {
 
     class ProductViewHolder(private var binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
+            Glide.with(binding.productImage.context)
+                .load(product.imageUrl)
+                .into(binding.productImage)
             binding.productTitle.text = product.productTitle
-//            binding.executePendingBindings() // this is for updating immediately
+            binding.productPrice.text = product.price.toString()
         }
     }
 
@@ -36,8 +40,11 @@ class ProductAdapter(): ListAdapter<Product,
         parent: ViewGroup,
         viewType: Int
     ): ProductViewHolder {
-        val adapterLayout = ProductItemBinding.inflate(LayoutInflater.from(parent.context))
-        return ProductViewHolder(adapterLayout)
+        val viewHolder = ProductViewHolder(ProductItemBinding.inflate(LayoutInflater.from(parent.context)))
+        viewHolder.itemView.setOnClickListener {
+            onProductClicked(getItem(viewHolder.adapterPosition))
+        }
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
