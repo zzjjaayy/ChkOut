@@ -14,6 +14,7 @@ import com.jay.chkout.R
 import com.jay.chkout.databinding.FragmentProductDetailsBinding
 import com.jay.chkout.network.Product
 import com.jay.chkout.viewModels.NetworkViewModel
+import java.util.*
 
 
 class ProductDetailsFragment : Fragment() {
@@ -41,10 +42,26 @@ class ProductDetailsFragment : Fragment() {
         Glide.with(requireContext())
             .load(currentProduct.imageUrl)
             .into(binding.productImage)
+        when(currentProduct.category) {
+            "men's clothing" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_clothing)
+            "women's clothing" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_clothing)
+            "jewelery" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_jewelery)
+            "electronics" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_electronics)
+            else -> binding.categoryChip.visibility = View.GONE
+        }
+        val ratingPercent = (currentProduct.rating.rate / 5) * 100
         binding.apply {
             productTitle.text = currentProduct.productTitle
             productDesc.text = currentProduct.description
             productPrice.text = resources.getString(R.string.price_template, currentProduct.price.toString())
+            binding.categoryChip.text = currentProduct.category.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+
+            binding.ratingBar.progress = ratingPercent.toInt()
+            binding.ratingText.text = "${currentProduct.rating.rate} / 5"
         }
     }
 

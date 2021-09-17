@@ -8,5 +8,11 @@ data class Product(
     val price : Double,
     val description: String,
     val category: String,
-    @Json(name = "image") val imageUrl : String
+    @Json(name = "image") val imageUrl : String,
+    val rating : Rating
+)
+
+data class Rating(
+    val rate : Double,
+    val count : Int
 )

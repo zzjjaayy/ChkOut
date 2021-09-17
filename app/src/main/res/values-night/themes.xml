@@ -13,4 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/rating</item>
+    </style>
 </resources>

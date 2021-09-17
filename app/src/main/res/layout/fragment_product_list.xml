@@ -63,7 +63,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:tint="#47494C"
+                app:tint="@color/grey"
                 android:contentDescription="@string/error_image_desc"
                 android:src="@drawable/ic_no_internet" />
 
