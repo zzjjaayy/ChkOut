@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.jay.chkout.databinding.FragmentProductListBinding
+import com.jay.chkout.viewModels.ApiStatus
 import com.jay.chkout.viewModels.NetworkViewModel
 
 class ProductListFragment : Fragment() {
@@ -42,6 +43,27 @@ class ProductListFragment : Fragment() {
         }
         networkViewModel.productsList.observe(viewLifecycleOwner, {
             adapter.submitList(it)
+        })
+
+        networkViewModel.status.observe(viewLifecycleOwner, {
+            when(it){
+                ApiStatus.LOADING -> {
+                    binding.loadingIndicator.visibility = View.VISIBLE
+                    binding.errorIndicator.visibility = View.GONE
+                    binding.productsRecyclerView.visibility = View.GONE
+                }
+                ApiStatus.DONE -> {
+                    binding.loadingIndicator.visibility = View.GONE
+                    binding.errorIndicator.visibility = View.GONE
+                    binding.productsRecyclerView.visibility = View.VISIBLE
+                }
+                ApiStatus.ERROR -> {
+                    binding.loadingIndicator.visibility = View.GONE
+                    binding.errorIndicator.visibility = View.VISIBLE
+                    binding.productsRecyclerView.visibility = View.GONE
+                }
+                else -> {}
+            }
         })
     }
 

@@ -8,7 +8,6 @@ import retrofit2.http.GET
 
 private const val BASE_URL = "https://fakestoreapi.com/"
 
-// Moshi is used to
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

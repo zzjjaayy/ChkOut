@@ -44,7 +44,7 @@ class ProductDetailsFragment : Fragment() {
         binding.apply {
             productTitle.text = currentProduct.productTitle
             productDesc.text = currentProduct.description
-            productPrice.text = " currentProduct.price.toString()"
+            productPrice.text = resources.getString(R.string.price_template, currentProduct.price.toString())
         }
     }
 
