@@ -4,4 +4,12 @@
     <string name="error_message">Something went wrong!</string>
     <string name="error_image_desc">Error Image</string>
     <string name="product_image_desc">Product Image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash_screen_desc">Check Out Logo</string>
+    <string name="welcome_title">Welcome to \n ChkOut</string>
+    <string name="welcome_image_desc">Welcome Illustration</string>
+    <string name="welcome_desc">Your all in one \n place to get \n products</string>
+    <string name="intro_title">Literally Everything</string>
+    <string name="intro_desc">From Electronics, clothes \n and jewelery and \n much more</string>
 </resources>
