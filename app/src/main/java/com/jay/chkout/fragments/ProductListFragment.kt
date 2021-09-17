@@ -48,16 +48,19 @@ class ProductListFragment : Fragment() {
         networkViewModel.status.observe(viewLifecycleOwner, {
             when(it){
                 ApiStatus.LOADING -> {
+                    binding.welcomeText.visibility = View.VISIBLE
                     binding.loadingIndicator.visibility = View.VISIBLE
                     binding.errorIndicator.visibility = View.GONE
                     binding.productsRecyclerView.visibility = View.GONE
                 }
                 ApiStatus.DONE -> {
+                    binding.welcomeText.visibility = View.VISIBLE
                     binding.loadingIndicator.visibility = View.GONE
                     binding.errorIndicator.visibility = View.GONE
                     binding.productsRecyclerView.visibility = View.VISIBLE
                 }
                 ApiStatus.ERROR -> {
+                    binding.welcomeText.visibility = View.GONE
                     binding.loadingIndicator.visibility = View.GONE
                     binding.errorIndicator.visibility = View.VISIBLE
                     binding.productsRecyclerView.visibility = View.GONE

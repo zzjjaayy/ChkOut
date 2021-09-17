@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/productListFragment"
         android:name="com.jay.chkout.fragments.ProductListFragment"
-        android:label="fragment_product_list"
+        android:label="Home"
         tools:layout="@layout/fragment_product_list" >
         <action
             android:id="@+id/action_productListFragment_to_productDetailsFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.jay.chkout.fragments.ProductDetailsFragment"
-        android:label="fragment_product_details"
+        android:label="Product Details"
         tools:layout="@layout/fragment_product_details" >
         <argument
             android:name="productID"

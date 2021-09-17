@@ -1,11 +1,13 @@
 package com.jay.chkout.fragments
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.jay.chkout.R
 import com.jay.chkout.databinding.ProductItemBinding
 import com.jay.chkout.network.Product
 
@@ -18,7 +20,15 @@ class ProductAdapter(private val onProductClicked : (Product) -> Unit): ListAdap
                 .load(product.imageUrl)
                 .into(binding.productImage)
             binding.productTitle.text = product.productTitle
-            binding.productPrice.text = product.price.toString()
+            binding.productPrice.text = binding.productPrice.context.resources
+                .getString(R.string.price_template, product.price.toString())
+            when(product.category) {
+                "men's clothing" -> binding.categoryIcon.setImageResource(R.drawable.ic_category_clothing)
+                "women's clothing" -> binding.categoryIcon.setImageResource(R.drawable.ic_category_clothing)
+                "jewelery" -> binding.categoryIcon.setImageResource(R.drawable.ic_category_jewelery)
+                "electronics" -> binding.categoryIcon.setImageResource(R.drawable.ic_category_electronics)
+                else -> binding.categoryIcon.visibility = View.GONE
+            }
         }
     }
 
@@ -40,7 +50,8 @@ class ProductAdapter(private val onProductClicked : (Product) -> Unit): ListAdap
         parent: ViewGroup,
         viewType: Int
     ): ProductViewHolder {
-        val viewHolder = ProductViewHolder(ProductItemBinding.inflate(LayoutInflater.from(parent.context)))
+        val viewHolder = ProductViewHolder(ProductItemBinding.
+            inflate(LayoutInflater.from(parent.context), parent, false))
         viewHolder.itemView.setOnClickListener {
             onProductClicked(getItem(viewHolder.adapterPosition))
         }
