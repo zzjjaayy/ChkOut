@@ -46,6 +46,17 @@ class ProductListFragment : Fragment() {
             lifecycleOwner = this@ProductListFragment
             productsRecyclerView.adapter = adapter
         }
+        setUserData()
+
+        networkViewModel.productsList.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
+        })
+        changeIndicatorVisibility()
+
+        setHasOptionsMenu(true)
+    }
+
+    private fun setUserData() {
         if(firebaseAuth.currentUser != null) {
             val name = firebaseAuth.currentUser?.displayName?.substringBefore(" ")
             name?.let{
@@ -59,11 +70,9 @@ class ProductListFragment : Fragment() {
             binding.welcomeText.text = getString(R.string.welcome_user, "Guest")
             binding.profileImage.setImageResource(R.drawable.ic_account_circle_24)
         }
+    }
 
-        networkViewModel.productsList.observe(viewLifecycleOwner, {
-            adapter.submitList(it)
-        })
-
+    private fun changeIndicatorVisibility() {
         networkViewModel.status.observe(viewLifecycleOwner, {
             when(it){
                 ApiStatus.LOADING -> {
@@ -87,7 +96,6 @@ class ProductListFragment : Fragment() {
                 else -> {}
             }
         })
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
