@@ -37,11 +37,26 @@ class ProductDetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        getCurrentProduct()
         super.onViewCreated(view, savedInstanceState)
+        getCurrentProduct()
+
         Glide.with(requireContext())
             .load(currentProduct.imageUrl)
             .into(binding.productImage)
+
+        setCategory()
+
+        val ratingPercent = (currentProduct.rating.rate / 5) * 100
+        binding.apply {
+            productTitle.text = currentProduct.productTitle
+            productDesc.text = currentProduct.description
+            productPrice.text = resources.getString(R.string.price_template, currentProduct.price.toString())
+            binding.ratingBar.progress = ratingPercent.toInt()
+            binding.ratingText.text = "${currentProduct.rating.rate} / 5"
+        }
+    }
+
+    private fun setCategory() {
         when(currentProduct.category) {
             "men's clothing" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_clothing)
             "women's clothing" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_clothing)
@@ -49,19 +64,10 @@ class ProductDetailsFragment : Fragment() {
             "electronics" -> binding.categoryChip.setChipIconResource(R.drawable.ic_category_electronics)
             else -> binding.categoryChip.visibility = View.GONE
         }
-        val ratingPercent = (currentProduct.rating.rate / 5) * 100
-        binding.apply {
-            productTitle.text = currentProduct.productTitle
-            productDesc.text = currentProduct.description
-            productPrice.text = resources.getString(R.string.price_template, currentProduct.price.toString())
-            binding.categoryChip.text = currentProduct.category.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(
-                    Locale.getDefault()
-                ) else it.toString()
-            }
-
-            binding.ratingBar.progress = ratingPercent.toInt()
-            binding.ratingText.text = "${currentProduct.rating.rate} / 5"
+        binding.categoryChip.text = currentProduct.category.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(
+                Locale.getDefault()
+            ) else it.toString()
         }
     }
 
