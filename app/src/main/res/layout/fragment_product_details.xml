@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipIcon="@drawable/ic_category_clothing"
-                    app:chipIconTint="@color/orange"
+                    app:chipIconTint="@color/green"
                     tools:text="Men's Clothing"
                     android:layout_gravity="center"/>
 
@@ -74,9 +74,9 @@
                         android:layout_marginTop="24dp"
                         android:clickable="false"
                         android:drawableLeft="@drawable/ic_baseline_monetization_on_24"
-                        android:backgroundTint="@color/orange"
+                        android:backgroundTint="@color/green"
                         android:focusable="false"
-                        app:iconTint="@color/orange"
+                        app:iconTint="@color/green"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"

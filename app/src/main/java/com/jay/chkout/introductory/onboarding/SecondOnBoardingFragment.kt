@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.jay.chkout.R
 
 class SecondOnBoardingFragment : Fragment() {
+    private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        firebaseAuth = FirebaseAuth.getInstance()
         return inflater.inflate(R.layout.fragment_second_on_boarding, container, false)
     }
 
@@ -24,7 +27,9 @@ class SecondOnBoardingFragment : Fragment() {
         view.apply {
             findViewById<ExtendedFloatingActionButton>(R.id.next_fab).setOnClickListener {
                 onBoardingFinished()
-                findNavController().navigate(R.id.action_viewPagerFragment_to_productListFragment)
+                if(firebaseAuth.currentUser == null) {
+                    findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
+                } else findNavController().navigate(R.id.action_viewPagerFragment_to_productListFragment)
             }
         }
     }

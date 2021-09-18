@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "690123783850",
+    "project_id": "chkout-e540b",
+    "storage_bucket": "chkout-e540b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690123783850:android:f4c8d204b7b16176d9dad3",
+        "android_client_info": {
+          "package_name": "com.jay.chkout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690123783850-rtcpj2l5nrin48aib7cvmstrcmriq8t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrZz3MGuYAxGSJGxUMXptUMtQUmS0eoSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690123783850-rtcpj2l5nrin48aib7cvmstrcmriq8t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

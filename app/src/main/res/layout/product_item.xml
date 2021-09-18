@@ -24,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_launcher_background"
+        android:backgroundTint="@color/white"
         android:contentDescription="@string/product_image_desc" />
 
         <TextView
@@ -53,7 +54,7 @@
             android:clickable="false"
             android:focusable="false"
             app:chipIcon="@drawable/ic_baseline_monetization_on_24"
-            app:chipIconTint="@color/orange"
+            app:chipIconTint="@color/green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/category_icon"
             app:layout_constraintStart_toEndOf="@id/product_image"

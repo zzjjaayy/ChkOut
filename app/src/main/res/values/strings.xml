@@ -12,4 +12,5 @@
     <string name="welcome_desc">Your all in one \n place to get \n products</string>
     <string name="intro_title">Literally Everything</string>
     <string name="intro_desc">From Electronics, clothes \n and jewelery and \n much more</string>
+    <string name="welcome_user">Welcome %s!</string>
 </resources>
